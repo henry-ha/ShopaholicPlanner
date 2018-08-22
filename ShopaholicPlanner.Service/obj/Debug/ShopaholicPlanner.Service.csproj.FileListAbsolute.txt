@@ -1,0 +1,10 @@
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\ShopaholicPlanner.Service.dll.config
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\ShopaholicPlanner.Service.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\ShopaholicPlanner.Service.pdb
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\EntityFramework.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\EntityFramework.xml
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Debug\ShopaholicPlanner.Service.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Debug\ShopaholicPlanner.Service.pdb
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Debug\ShopaholicPlanner.Service.csprojResolveAssemblyReference.cache

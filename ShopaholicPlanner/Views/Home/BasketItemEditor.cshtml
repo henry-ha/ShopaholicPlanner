@@ -1,0 +1,27 @@
+﻿@model ShopaholicPlanner.Models.ShoppingBasketModel
+
+<tr class="sp-items">
+    <td>
+        @Html.TextBoxFor(x => x.Name, new { placeholder = "Product name" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Description, new { placeholder = "Description" })
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Quantity, new { placeholder = "Quantity", type = "number", min = 1, @class = "priceQuantity"})
+        @Html.ValidationMessageFor(model => model.Quantity)
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Currency, new { placeholder = "Currency", maxlength = "1", @class = "priceCurrency" })
+        @Html.ValidationMessageFor(model => model.Currency)
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Price, new { placeholder = "Price", @class = "priceAdd", onkeypress = "return isNumberKey(event);" })
+        @Html.ValidationMessageFor(model => model.Price)
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Url, new { placeholder = "Url" })
+    </td>
+    <td><a class="btn btn-default removeItem" href="#">Remove</a></td>
+</tr>

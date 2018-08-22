@@ -1,0 +1,10 @@
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\ShopaholicPlanner.Service.dll.config
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\ShopaholicPlanner.Service.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\ShopaholicPlanner.Service.pdb
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\EntityFramework.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\EntityFramework.xml
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Release\ShopaholicPlanner.Service.csprojResolveAssemblyReference.cache
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Release\ShopaholicPlanner.Service.dll
+C:\Users\henry\Documents\VS Projects\ShopaholicPlanner\ShopaholicPlanner.Service\obj\Release\ShopaholicPlanner.Service.pdb
