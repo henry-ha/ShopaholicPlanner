@@ -203,6 +203,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808222038598_InitialCreate.cs" />
+    <Compile Include="Migrations\201808222038598_InitialCreate.Designer.cs">
+      <DependentUpon>201808222038598_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -287,6 +292,11 @@
       <Project>{f0e5f652-a696-4fa6-9fcb-d160c79486d6}</Project>
       <Name>ShopaholicPlanner.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808222038598_InitialCreate.resx">
+      <DependentUpon>201808222038598_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

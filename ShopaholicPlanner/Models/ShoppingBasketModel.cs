@@ -14,9 +14,15 @@ namespace ShopaholicPlanner.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "Quantity is required")]
         public int Quantity { get; set; }
         public string Url { get; set; }
+
+        [Required(ErrorMessage = "Currency is required")]
         public string Currency { get; set; }
+
+        [Required(ErrorMessage = "Price is required")]
         public Decimal Price { get; set; }
     }
 }

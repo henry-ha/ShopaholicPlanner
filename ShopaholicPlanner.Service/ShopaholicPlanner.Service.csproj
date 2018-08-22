@@ -55,6 +55,7 @@
     <Compile Include="Models\ShoppingBasket.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\BasketRepository.cs" />
     <Compile Include="ShopaholicPlannerContext.cs" />
   </ItemGroup>

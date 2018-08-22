@@ -166,3 +166,5 @@ C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\bin
 C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\obj\Debug\ShopaholicPlanner.csprojResolveAssemblyReference.cache
 C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\obj\Debug\ShopaholicPlanner.dll
 C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\obj\Debug\ShopaholicPlanner.pdb
+C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\obj\Debug\ShopaholicPlanner.Migrations.InitialCreate.resources
+C:\Users\henry\Documents\VS Projects\git\ShopaholicPlanner\ShopaholicPlanner\obj\Debug\ShopaholicPlanner.csproj.GenerateResource.Cache

@@ -11,5 +11,5 @@ public class User
     [StringLength(100)]
     public string UserName { get; set; }
     public string Email { get; set; }
-    public List<ShoppingBasket> ShoppingBasket { get; set; }
+    public ICollection<ShoppingBasket> ShoppingBasket { get; set; }
 }

@@ -17,5 +17,8 @@ public class ShoppingBasket : BaseEntity<int>
     public Decimal Price { get; set; }
     public DateTime? UpdateDateUTC { get; set; }
     public DateTime? ArchiveDateUTC { get; set; }
+
+
+    public string UserId { get; set; }
     public User User { get; set; }
 }

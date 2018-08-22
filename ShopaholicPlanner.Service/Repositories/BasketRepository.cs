@@ -8,8 +8,9 @@ namespace ShopaholicPlanner.Service.Repositories
     {
         private ShopaholicPlannerContext _context;
 
-        public BasketRepository(ShopaholicPlannerContext context)
+        public BasketRepository()
         {
+            ShopaholicPlannerContext context = new ShopaholicPlannerContext();
             this._context = context;
         }
 
@@ -24,19 +25,7 @@ namespace ShopaholicPlanner.Service.Repositories
 
             return item;
         }
-
-        //public List<ShoppingBasket> LoadByUserId(string id)
-        //{
-        //    List<ShoppingBasket> items = null;
-        //    if (!string.IsNullOrWhiteSpace(id))
-        //    {
-        //        items = _context.ShoppingBaskets
-        //            .Where(x => x.User.Id == id).ToList();
-        //    }
-
-        //    return items;
-        //}
-
+        
         public IEnumerable<ShoppingBasket> LoadByUserId(string id)
         {
             IEnumerable<ShoppingBasket> items;
@@ -63,6 +52,17 @@ namespace ShopaholicPlanner.Service.Repositories
                 }
 
                 _context.SaveChanges();                
+            }
+
+            return true;
+        }
+
+        public bool RemoveFromBasket(ShoppingBasket item)
+        {
+            if (item != null)
+            {               
+                _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
             }
 
             return true;

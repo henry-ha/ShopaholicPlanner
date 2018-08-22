@@ -2,11 +2,14 @@
 
 <tr class="sp-items">
     <td>
-        @Html.TextBoxFor(x => x.Name, new { placeholder = "Product name" })
+
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Name, new { placeholder = "Product name", @class = "itemName" })
         @Html.ValidationMessageFor(model => model.Name)
     </td>
     <td>
-        @Html.TextBoxFor(x => x.Description, new { placeholder = "Description" })
+        @Html.TextBoxFor(x => x.Description, new { placeholder = "Description", @class = "itemDescription" })
     </td>
     <td>
         @Html.TextBoxFor(x => x.Quantity, new { placeholder = "Quantity", type = "number", min = 1, @class = "priceQuantity"})
@@ -21,7 +24,7 @@
         @Html.ValidationMessageFor(model => model.Price)
     </td>
     <td>
-        @Html.TextBoxFor(x => x.Url, new { placeholder = "Url" })
+        @Html.TextBoxFor(x => x.Url, new { placeholder = "Url", @class = "itemUrl" })
     </td>
-    <td><a class="btn btn-default removeItem" href="#">Remove</a></td>
+    <td><a class="btn btn-danger removeItem" href="#">Remove</a></td>
 </tr>

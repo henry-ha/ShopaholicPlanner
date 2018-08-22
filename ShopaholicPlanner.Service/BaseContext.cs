@@ -8,22 +8,19 @@ public abstract class BaseContext : DbContext
 {
     public BaseContext()
     {
-        Database.SetInitializer<ShopaholicPlannerContext>(null);
+        //Database.SetInitializer<ShopaholicPlannerContext>(null);
     }
 
     protected BaseContext(string connString)
+        :base(connString)
     {
-       
     }
-
-    public IUser Userinfo;
     
     public DbSet<ShoppingBasket> ShoppingBaskets { get; set; }
     public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<ShoppingBasket>()
-        //    .HasKey(c => new { c.User.Id, c.Id });        
+        
     }    
 }

@@ -9,59 +9,85 @@
     <div class="jumbotron">
         <h1>Shopaholic Planner.</h1>
         <p class="lead">Start by building your shopping list below. You can add whatever items you like!</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Save</a></p>
+        @if (Model.IsLoggedIn)
+        {
+            <p><a href="#" id="btnSave" class="btn btn-primary btn-lg">Save</a>
+                <label id="lblSaved" style="color:#008000; margin-left:10px;">Saved!</label>
+            </p>            
+        }        
     </div>
 
-    <div class="row">
-        @if (Model.ShoppingBasketItems.Count == 0)
+    <div class="row col-md-12">
+        @Html.HiddenFor(x => x.ShoppingBasketItems)
+
+        @if (Model.IsLoggedIn == false)
+        {
+            <h4>
+                <a href="/Account/Login">Login</a>
+                <span>or</span>
+                <a href="/Account/Register">Register</a>
+                <span>to get started.</span>
+            </h4>
+        }
+        else if (Model.ShoppingBasketItems.Count == 0)
         {
             <h5>There are no items in your shopping basket :( - Add items now!</h5>
         }
+
+        @if (Model.IsLoggedIn)
+        {            
+            <h5 id="lblValidation" style="color:#dc3545;">* Please enter required fields</h5>
+
             <table id="basketList">
 
                 @for (int i = 0; i < Model.ShoppingBasketItems.Count; i++)
                 {
-                    <tr class="sp-items">         
+                    <tr class="sp-items">
+                        <td style="color:white;">
+                            <label class="itemId">@Model.ShoppingBasketItems[i].Id</label>
+                        </td>  
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Name, new { placeholder = "Product name" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Name, new { placeholder = "Product name", @class = "itemName" })
                             @Html.ValidationMessageFor(model => model.ShoppingBasketItems[i].Name)
                         </td>
 
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Description, new { placeholder = "Description" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Description, new { placeholder = "Description", @class = "itemDescription" })
                         </td>
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Quantity, new { placeholder = "Quantity", type = "number", min = 1, @class = "priceQuantity" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Quantity, new { placeholder = "Quantity", type = "number", min = 1, @class = "priceQuantity" })
                             @Html.ValidationMessageFor(model => model.ShoppingBasketItems[i].Quantity)
                         </td>
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Currency, new { placeholder = "Currency", maxlength = "1", @class = "priceCurrency" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Currency, new { placeholder = "Currency", maxlength = "1", @class = "priceCurrency" })
                             @Html.ValidationMessageFor(model => model.ShoppingBasketItems[i].Currency)
                         </td>
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Price, new { placeholder = "Price", @class = "priceAdd", onkeypress = "return isNumberKey(event);" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Price, new { placeholder = "Price", @class = "priceAdd", onkeypress = "return isNumberKey(event);" })
                             @Html.ValidationMessageFor(model => model.ShoppingBasketItems[i].Price)
                         </td>
                         <td>
-                            @Html.EditorFor(x => x.ShoppingBasketItems[i].Url, new { placeholder = "Url" })
+                            @Html.TextBoxFor(x => x.ShoppingBasketItems[i].Url, new { placeholder = "Url", @class = "itemUrl" })
                         </td>
-                        <td><a class="btn btn-default removeItem" href="#">Remove</a></td>
+                        <td><a class="btn btn-danger removeItem" href="#">Remove</a></td>
                     </tr>
                 }                
             </table>
 
-        <p><a id="addAnother" class="btn btn-default" href="#">Add</a></p>
+        <a id="addAnother" style="margin-top: 10px; margin-left: 10px;" class="btn btn-default" href="#">Add</a>
 
         <div class="row col-md-12 text-right">
             <label id="total">Total: £0.00</label>
         </div>
-        
+        }
     </div>
 </form>
 
 <script>
     $(function () {
         //page load
+        $("#lblValidation").hide();
+        $("#lblSaved").hide();
         recalculateTotal();
     });
 
@@ -72,7 +98,33 @@
     $(document).on('click', 'form .removeItem', function () {
         $(this).parent().parent().remove();
         recalculateTotal();
+
+        var itemId = 0;
+        var itemIdObj = $(this).parent().parent().find(".itemId")[0];
+        if (itemIdObj !== null && itemIdObj !== undefined) {
+            if (itemIdObj.textContent !== null && itemIdObj.textContent !== "") {
+                itemId = itemIdObj.textContent;
+            }
+        }
+        if (itemId > 0) {
+            //remove from db
+            removeItem(itemId);
+        }
+
     });
+
+    function removeItem(itemId) {
+        $.ajax({
+            type: "POST",
+            data: [],
+            url: "/Home/RemoveFromBasket/" + itemId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (d) {
+                alert(d);
+            }
+        });
+    };
 
     function recalculateTotal() {
         var totalValue = 0;
@@ -82,7 +134,7 @@
             var quantity = 1;
             var quantityObj = $(this).find(".priceQuantity")[0];
 
-            if (quantityObj !== null) {
+            if (quantityObj !== null && quantityObj !== undefined) {
                 if (parseInt(quantityObj.value)) {
                     quantity = quantityObj.value;
                 }
@@ -91,7 +143,7 @@
             //work out cost
             var productCost = 0;
             var priceObj = $(this).find(".priceAdd")[0];
-            if (priceObj !== null) {
+            if (priceObj !== null && quantity !== undefined) {
                 if (parseInt(priceObj.value)) {
                     productCost = priceObj.value;
                 }
@@ -133,5 +185,124 @@
 
         return true;
     }
+
+    $("#btnSave").click(function () {
+
+        var validationSucess = true;
+
+        var myBasket = [];
+        $("form .sp-items").each(function () {
+
+            //Required
+            var nameX = $(this).find(".itemName");
+            var name = null;
+            var nameObj = $(this).find(".itemName")[0];
+            if (nameObj !== null && nameObj !== undefined) {
+                if (nameObj.value !== null && nameObj.value !== "") {
+                    name = nameObj.value;                                        
+                    nameX.removeClass('form-control-invalid');
+                } else {
+                    nameX.addClass('form-control-invalid');
+                }
+            } 
+            
+            var description = null;
+            var descriptionObj = $(this).find(".itemDescription")[0];
+            if (descriptionObj !== null && descriptionObj !== undefined) {
+                if (descriptionObj.value !== null && descriptionObj.value !== "") {
+                    description = descriptionObj.value;
+                }
+            }
+
+            //Required
+            var quantityX = $(this).find(".priceQuantity");
+            var quantity = 1;
+            var quantityObj = $(this).find(".priceQuantity")[0];
+            if (quantityObj !== null && quantity !== undefined) {
+                if (quantityObj.value !== null && quantityObj.value !== "") {
+                    quantity = quantityObj.value;
+                    quantityX.removeClass('form-control-invalid');
+                } else {
+                    quantityX.addClass('form-control-invalid');
+                }
+            } 
+
+            //Required
+            var currencyX = $(this).find(".priceCurrency");
+            var currency = null;
+            var currencyObj = $(this).find(".priceCurrency")[0];
+            if (currencyObj !== null && currencyObj !== undefined) {
+                if (currencyObj.value !== null && currencyObj.value !== "") {
+                    currency = currencyObj.value;
+                    currencyX.removeClass('form-control-invalid');
+                } else {
+                    currencyX.addClass('form-control-invalid');
+                }
+            } 
+
+            //Required
+            var priceX = $(this).find(".priceAdd");
+            var price = null;
+            var priceObj = $(this).find(".priceAdd")[0];
+            if (priceObj !== null && priceObj !== undefined) {
+                if (priceObj.value !== null && priceObj.value !== "") {
+                    price = priceObj.value;
+                    priceX.removeClass('form-control-invalid');
+                } else {
+                    priceX.addClass('form-control-invalid');
+                }
+            } 
+
+            var url = null;
+            var urlObj = $(this).find(".itemUrl")[0];
+            if (urlObj !== null && urlObj !== undefined) {
+                if (urlObj.value !== null && urlObj.value !== "") {
+                    url = urlObj.value;
+                }
+            }
+
+            var itemId = 0;
+            var itemIdObj = $(this).find(".itemId")[0];
+            if (itemIdObj !== null && itemIdObj !== undefined) {
+                if (itemIdObj.textContent !== null && itemIdObj.textContent !== "") {
+                    itemId = itemIdObj.textContent;
+                }
+            }
+
+            var ShoppingBasketModel = {
+                Id: itemId,
+                Name: name,
+                Description: description,
+                Quantity: quantity,
+                Currency: currency,
+                Price: price,
+                Url: url,
+            };
+
+            myBasket.push(ShoppingBasketModel);
+        });
+
+        var anyValidationErrors = $("form .sp-items").find(".form-control-invalid");
+
+        if (anyValidationErrors.length == 0) {
+            $("#lblValidation").hide();
+
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(myBasket),
+                url: "/Home/InsertUpdateBasket",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (d) {
+                    $("#lblSaved").show();                    
+                    setTimeout(function () { $("#lblSaved").fadeOut(); }, 1000);
+                }
+            });
+        } else {
+            // show validation error
+            $("#lblValidation").show();
+        }        
+
+    })
 
 </script>

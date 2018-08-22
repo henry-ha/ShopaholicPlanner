@@ -7,14 +7,12 @@ public class ShopaholicPlannerContext : BaseContext
 {
     public ShopaholicPlannerContext() : base("DefaultConnection")
     {
+        //Disable initializer
+        Database.SetInitializer<ShopaholicPlannerContext>(null);
     }
 
-    //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    //{
-    //    modelBuilder.Entity<ShoppingBasket>()
-    //            .HasKey(c => new { c.Id, c.User });
-        
-
-    //    base.OnModelCreating(modelBuilder);
-    //}
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }
